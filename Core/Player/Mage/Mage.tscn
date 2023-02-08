@@ -1,0 +1,92 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_007.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_008.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_006.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_004.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_005.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_010.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_011.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_000.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_001.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_009.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_002.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Characters/Mage/Idle Blinking/Idle Blinking_003.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_000.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_001.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_002.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_003.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_004.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_005.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_006.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_007.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_008.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_009.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_010.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_011.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_013.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_014.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_017.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_016.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_015.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Characters/Mage/Walking/Walking_012.png" type="Texture" id=30]
+[ext_resource path="res://Core/Player/Mage/SpriteFlipper.gd" type="Script" id=31]
+[ext_resource path="res://Core/Player/Mage/Mage.gd" type="Script" id=32]
+[ext_resource path="res://Weapons/Sword/Sword.tscn" type="PackedScene" id=33]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 30 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 29 ), ExtResource( 28 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 15.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 39.0512
+
+[node name="Mage" type="KinematicBody2D"]
+script = ExtResource( 32 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 1 )
+animation = "Idle"
+frame = 9
+playing = true
+script = ExtResource( 31 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 11, -5 )
+shape = SubResource( 2 )
+
+[node name="WeaponsContainer" type="Node2D" parent="."]
+
+[node name="Sword" parent="WeaponsContainer" instance=ExtResource( 33 )]
+position = Vector2( 88, -51 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Sword2" parent="WeaponsContainer" instance=ExtResource( 33 )]
+position = Vector2( 88, -51 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Sword3" parent="WeaponsContainer" instance=ExtResource( 33 )]
+position = Vector2( 88, -51 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Sword4" parent="WeaponsContainer" instance=ExtResource( 33 )]
+position = Vector2( 88, -51 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Sword5" parent="WeaponsContainer" instance=ExtResource( 33 )]
+position = Vector2( 88, -51 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Sword6" parent="WeaponsContainer" instance=ExtResource( 33 )]
+position = Vector2( 88, -51 )
+scale = Vector2( 0.5, 0.5 )

@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Weapons/Swords/NormalSword.png" type="Texture" id=1]
+[ext_resource path="res://Weapons/Sword/Sword.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 31.0
+height = 102.0
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 534.585
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 228.009
+
+[node name="Sword" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[node name="collision_detection_area" type="Area2D" parent="Sprite"]
+
+[node name="shape" type="CollisionShape2D" parent="Sprite/collision_detection_area"]
+visible = false
+position = Vector2( 39, -2 )
+rotation = 1.5708
+shape = SubResource( 1 )
+disabled = true
+
+[node name="weapon_ai" type="Node2D" parent="Sprite"]
+
+[node name="sight_of_view" type="Area2D" parent="Sprite/weapon_ai"]
+rotation = 1.5708
+collision_layer = 0
+collision_mask = 2
+
+[node name="shape" type="CollisionShape2D" parent="Sprite/weapon_ai/sight_of_view"]
+self_modulate = Color( 0.384314, 0.521569, 0.109804, 0.258824 )
+position = Vector2( 0, -280 )
+shape = SubResource( 3 )
+
+[node name="sight_of_attack" type="Area2D" parent="Sprite/weapon_ai"]
+rotation = 1.5708
+collision_layer = 0
+collision_mask = 2
+
+[node name="shape" type="CollisionShape2D" parent="Sprite/weapon_ai/sight_of_attack"]
+self_modulate = Color( 0.0196078, 0.00392157, 0, 0.72549 )
+position = Vector2( 0, -180 )
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="Sprite/collision_detection_area" to="." method="_on_collision_detection_area_body_entered"]
+[connection signal="body_entered" from="Sprite/weapon_ai/sight_of_view" to="." method="_on_sight_of_view_body_entered"]
+[connection signal="body_exited" from="Sprite/weapon_ai/sight_of_view" to="." method="_on_sight_of_view_body_exited"]
+[connection signal="body_entered" from="Sprite/weapon_ai/sight_of_attack" to="." method="_on_sight_of_attack_body_entered"]
+[connection signal="body_exited" from="Sprite/weapon_ai/sight_of_attack" to="." method="_on_sight_of_attack_body_exited"]
